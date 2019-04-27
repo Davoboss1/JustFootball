@@ -1,0 +1,27 @@
+.head{
+	
+font-family: 'Raleway', sans-serif;
+color : #F4C8F9;
+	
+}
+.list{
+	opacity : 0.8;
+	color : #381080; 
+	
+}
+body{
+	background-image : url("../images/bg.png");
+
+}
+
+.top_margin{
+	margin-top:5%;
+}
+
+.select{
+	font-size:20px; 
+	margin-top:5px;
+}
+.scores_display{
+	padding-left:5%;
+}
