@@ -33,7 +33,7 @@ def news(request,no,title_url):
 	
 	context = {'post' : posts ,'home_goal_scorers' : home_goal_scorers_value(posts) ,'away_goal_scorers' : away_goal_scorers_value(posts) ,}
 		
-	return render(request,"News_page.html",context)
+	return render(request,"news/News_page.html",context)
 	
 	
 
@@ -41,7 +41,7 @@ def news(request,no,title_url):
 class post_news(CreateView):
 	form_class = post_football
 	model = football_posts
-	template_name = 'news_update.html'
+	template_name = 'news/news_update.html'
 	
 	
 	def form_valid(self,form):
@@ -57,7 +57,7 @@ class post_news(CreateView):
 		
 	
 def update_news_url(request):
-	template_name="news_update_select.html"
+	template_name="news/news_update_select.html"
 	posts = football_posts.objects.all()
 	context = {'post' :posts ,'error' : error}
 	return render(request,template_name,context)
@@ -68,12 +68,12 @@ def update_news_url(request):
 class update_news(UpdateView):
 	form_class = post_football
 	model = football_posts
-	template_name = "news_update.html"
+	template_name = "news/news_update.html"
 	success_url = reverse_lazy("news:news_update")
 	extra_context = {'error' : error}
 
 def delete_news_url(request):
-	template_name="news_delete_select.html"
+	template_name="news/news_delete_select.html"
 	posts = football_posts.objects.all()
 	context = {'post' :posts ,'error' : error}
 	return render(request,template_name,context)

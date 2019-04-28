@@ -35,7 +35,7 @@ class standing(generic.ListView):
 '''
 def control_panel(request):
 	if request.user.is_authenticated:
-		return render(request,'control_panel.html',{})
+		return render(request,'home/control_panel.html',{})
 	else:
 		raise Http404("Page does not exist")
 

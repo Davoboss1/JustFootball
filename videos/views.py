@@ -6,5 +6,5 @@ def Videos(request):
 	context = {
 	'video' : videos
 	}
-	return render(request,"Videos_page.html",context)
+	return render(request,"videos/Videos_page.html",context)
 	

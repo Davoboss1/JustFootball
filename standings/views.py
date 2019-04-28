@@ -22,4 +22,4 @@ def standings(request,league_url):
 	'standings' : Standing,
 		}
 	
-	return render(request, 'standings.html' , context)
+	return render(request, 'standings/standings.html' , context)

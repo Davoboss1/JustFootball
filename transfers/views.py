@@ -6,7 +6,7 @@ from django.core.paginator import Paginator
 
 
 class transfers_league(generic.ListView):
-	template_name = "transfers_page.html"
+	template_name = "transfers/transfers_page.html"
 	context_object_name = "pages"
 	
 	league_name = League_name.objects.all()
