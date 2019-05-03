@@ -129,9 +129,11 @@ def homepage(request):
 			scores_pages = scores_paginator.get_page(pages)
 	
 			searched_standings = Standings.objects.filter(team__contains = search) 
+			searched_league = Table.objects.filter(leagues_table__contains = search) 
 		
 			searched_transfer = Transfers.objects.filter(From__contains = search) | Transfers.objects.filter(To__contains = search)
 			searched_Videos = Video.objects.filter(video_name__contains = search)
+			print(searched_standings)
 			context = {}
 		
 			context['news'] = post
@@ -143,6 +145,7 @@ def homepage(request):
 		
 	
 			context['standing'] = searched_standings
+			context['table'] = searched_league
 			context['transfers'] = searched_transfer
 			context['video'] = searched_Videos
 			return render(request,'home/search.html',context)

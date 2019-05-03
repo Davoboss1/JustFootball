@@ -20,7 +20,7 @@
       <div class="row">
         <div class="span12">
           <div class="letter-container inner-heading">
-            <h2 class="fade" >
+            <h2 class="fade" style="color: #1C3402;">
             {{post.Title}}</h2>
           </div>
         </div>
@@ -117,9 +117,9 @@
   		
   		<img src="{{post.images}}" alt="JustFootball Image">
   		
-  			<p class="posts">
-  		{{post.news  | safe}}
-  		</p>
+  			<div class="posts" >
+  		{{post.news  | safe | linebreaks }}
+  		</div>
   				
   			
   		</div>

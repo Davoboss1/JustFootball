@@ -159,43 +159,7 @@ style="display:flex;">
           <div class="span12">
             <div id="sequence">
               <ul>
-                <li class="animate-in">
-                  <div class="info letter-container">
-                    <h2  class="fade">Welcome to JustFootball</h2>
-                    
-                  </div>
-                  <h4 class="subtitle">Where you can see all the latest about football</h4>
-                  <div class="bottomup">
-                    <img src=" {% static 'img/slider/parallax/img2.jpg' %} " alt="Next">
-                  </div>
-                </li>
-                <li class="animate-in">
-                  <div class="info letter-container">
-                    <h2 class="fade"  style="font-size:40px;">We serve the latest about football</h2>
-                  </div>
-                  <h4 class="subtitle">And all the  est information about football</h4>
-                  <div class="lefttop">
-                    <img src=" {% static 'img/slider/parallax/img1.png' %}" alt="">
-                  </div>
-                </li>
-                <li class="animate-in">
-                  <div class="info letter-container">
-                    <h2 class="fade">With latest Scores</h2>
-                  </div>
-                  <h4 class="subtitle">And Latest Scores and fixtures</h4>
-                  <div class="righttop">
-                    <img src="{% static 'img/slider/parallax/imgg.png' %}" alt="">
-                  </div>
-                </li>
-                 <li class="animate-in">
-                  <div class="info letter-container">
-                    <h2 class="fade">With latest Scores</h2>
-                  </div>
-                  <h4 class="subtitle">And Latest Scores and fixtures</h4>
-                  <div class="righttop">
-                    <img src="{% static 'img/slider/parallax/imgg.png' %}" alt="">
-                  </div>
-                </li>
+                
                     {% for slide in slider %}
                 <li class="animate-in">
                   <div class="info letter-container">
@@ -399,6 +363,33 @@ style="display:flex;">
     
 <div class="accordion-body collapse in" id="collapseOne"  role="tabpanel" aria-labelledby="headingOne">
       <div class="card-body">
+      	{% if table.exists %}
+      
+
+  <!-- List of all Continents-->
+      	<ul style = "list-style-type : none;">
+      		<li>
+      	<div class="card-header" role = "tab" id = "headingtwo">
+      		 	<h3 style="text-align:center">
+      			 	Leagues
+      			 	</h3>
+      			 	{% for table in table %}
+      			 <a href="{% url 'standings:standing' table.url %}" >
+      			
+      		<h3 style="text-align:center">
+      		
+             {{table.leagues_table}}
+    </h3>
+      		    </a>
+      		{% endfor %}
+      	</div>
+      	</li>
+      	</ul>
+      	<hr>
+      	{% else %}
+    	<h1> Searched League does not exists </h1>
+    	<hr>
+    		{% endif %}
       	{% if standing.exists %}
       {% for standings in standing %}
 
@@ -406,14 +397,15 @@ style="display:flex;">
       	<ul style = "list-style-type : none;">
       		<li>
       	<div class="card-header" role = "tab" id = "headingtwo">
-      		
+      		 	<h3 style="text-align:center">
+      			 	Teams
+      			 	</h3>
       			 <a href="{% url 'standings:standing' standings.league_name.url %}" >
+      			
       		<h3 style="text-align:center">
       		
-          {{standings.league_name.leagues_table}}
-    
-      			
-      		</h3>
+          {{standings.team}}-          {{standings.league_name.leagues_table}}
+    </h3>
       		    </a>
       		
       	</div>
@@ -421,7 +413,7 @@ style="display:flex;">
       	</ul>
       	{% endfor %}
       	{% else %}
-    	<h1> Searched Leagues or Teams does not exists </h1>
+    	<h1> Searched Teams does not exists </h1>
     	<hr>
     		{% endif %}
       </div>

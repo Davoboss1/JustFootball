@@ -131,7 +131,7 @@ class Standings(models.Model):
 	class Meta:
 		verbose_name = "Standing"
 		
-		ordering = ['league_name']
+		ordering = ['league_name','-points']
 		
 		
 		
