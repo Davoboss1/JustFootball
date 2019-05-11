@@ -29,7 +29,7 @@ SECRET_KEY = '%d828_2!117%7!i6os-1+48ctcazk%-rphgmobe9dl%s!jc=_='
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['10.99.221.98','127.0.0.1']
+ALLOWED_HOSTS = ['davoboss1.pythonanywhere.com','127.0.0.1']
 
 # Application definition
 
@@ -65,7 +65,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS':  [os .path .join(BASE_DIR, 'templates')],
-        
+
 
         'APP_DIRS': True,
         'OPTIONS': {
@@ -87,14 +87,13 @@ WSGI_APPLICATION = 'justfootball.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-    ,
-      'mydata': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'mydata.sqlite3'),
-    }
+'ENGINE': 'django.db.backends.mysql',
+'NAME': 'DavoBoss1$default',
+'USER': 'DavoBoss1',
+'PASSWORD': 'Davoakin',
+'HOST': 'DavoBoss1.mysql.pythonanywhere-services.com',
+'PORT': '3306',
+},
 }
 
 
@@ -133,14 +132,26 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
+<<<<<<< HEAD
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 '''
+=======
+
+
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
+
+STATIC_URL = '/static/'
+MEDIA_URL = '/media/'
+
+'''
+
+>>>>>>> cf8bb920efc913b25cc42506765b221c549d2466
 STATICFILES_DIRS = [ str(BASE_DIR)+"/static/",
 ]
 '''
 
 
 
-
+'''
