@@ -14,7 +14,7 @@ from standings.models import *
 from videos.models import Video
 import time
 from django.http import QueryDict
-
+from justfootball import settings
 '''
 class news(generic.ListView):
 	template_name = 'home/index.html'
@@ -44,6 +44,7 @@ def control_panel(request):
 	
 def homepage(request):
 	show  = str()
+	print(settings.STATIC_ROOT)
 	Slider = slider.objects.all()
 	league_name = None
 	Tables = Table.objects.all()
