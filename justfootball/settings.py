@@ -65,7 +65,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS':  [os .path .join(BASE_DIR, 'templates')],
-        
+
 
         'APP_DIRS': True,
         'OPTIONS': {
@@ -87,14 +87,13 @@ WSGI_APPLICATION = 'justfootball.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-    ,
-      'mydata': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'mydata.sqlite3'),
-    }
+'ENGINE': 'django.db.backends.mysql',
+'NAME': 'DavoBoss1$default',
+'USER': 'DavoBoss1',
+'PASSWORD': 'Davoakin',
+'HOST': 'DavoBoss1.mysql.pythonanywhere-services.com',
+'PORT': '3306',
+},
 }
 
 
