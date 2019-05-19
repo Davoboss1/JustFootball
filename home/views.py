@@ -44,32 +44,10 @@ def control_panel(request):
 	
 def homepage(request):
 	show  = str()
-	print(settings.STATIC_ROOT)
 	Slider = slider.objects.all()
 	league_name = None
 	Tables = Table.objects.all()
 	table_name = Table_name()
-	
-		
-	
-	
-	
-		
-			
-		
-			#print(True)
-			#print(league_name.url)
-			#return redirect(reverse('standings:standing',))
-			
-		
-		
-
-	
-	#name = europe_competitions_set.get().europe_competition.leagues_table
-	
-	
-	
-	
 	#All football news posts
 	all_posts = football_posts.objects.all()
 	
