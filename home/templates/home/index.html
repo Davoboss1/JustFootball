@@ -7,10 +7,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="">
   <meta name="author" content="">
-  
+
   <!--Loading all styles for this page -->
 {%load staticfiles %}
- 
+
  <link href="{% static 'css/bootstrap.css' %} "  rel="stylesheet">
  <link href="{% static 'css/bootstrap-responsive.css' %} " rel="stylesheet">
   <link href="{% static 'css/prettyPhoto.css' %}" rel="stylesheet">
@@ -41,24 +41,24 @@
 
 
   <header>
-  
-   	 
-          
 
-  
+
+
+
+
     <!-- start top -->
     <div id="topnav" class="navbar navbar-fixed-top default">
-    	
+
       <div class="navbar-inner">
         <div class="container">
-        	
-    
-          	
-          
-            
-             	
+
+
+
+
+
+
 <div id="mysidenav" class="sidenav">
-	
+
 	<a href="javascript:void(0)" class="closebtn" onclick="closeNav()"> Close &times</a>
 		<a href="{% url 'Homepage' %}">Home</a>
 	<a href="#latest_news" onclick="closeNav()">News</a>
@@ -74,27 +74,27 @@
             	JustFootball
             	</h1>
             	   </a>
-            
-            
 
-            
+
+
+
         <div id="accordion" role="tablist">
   <div class="">
     <div class="" role="tab" id="headingOne">
-      
-	 
+
+
 
         <a data-toggle="collapse" href="#menu_collapse" aria-expanded="true" aria-controls="menu_collapse" class="menu_link">
-         
+
            		 	<span class="icon-search " id="search_menu" style="color:#064500;"  >
-           		 		
-           		 </span> 
+
+           		 </span>
         </a>
-       
-      
+
+
     </div>
-    
-    
+
+
 
     <div  id="menu_collapse" class="collapse show menu_drop" role="tabpanel" aria-labelledby="headingOne">
       <div class="menu_items">
@@ -109,57 +109,57 @@ style="display:flex;">
     icon-search
     " style="font-size:25px;"></span>
     </button>
-    
+
   </span>
 
-   
+
     </div>
        </form>
-        	
+
   </div>
-  
+
 </div>
 
 </div>
-            
-            
-                  
-          
- 
-         
-          
+
+
+
+
+
+
+
         </div>
       </div>
     </div>
     <!-- end top -->
-    
-    
-    
+
+
+
 
   </header>
 
-  
-   
-   
-         
+
+
+
+
     <!-- For Slider -->
   <!-- section featured -->
   <section id="featured" >
 
  <!--    sequence slider -->
-    
+
     <div id="sequence-theme">
       <img class="prev" src="{% static 'img/bt-prev.png' %}" alt="Previous">
       <img class="next" src="{% static 'img/bt-next.png' %}" alt="Next">
-      	
-      	
-      	       	
+
+
+
       <div class="container">
         <div class="row">
           <div class="span12">
             <div id="sequence">
               <ul>
-                
+
                 {% for slide in slider %}
                 <li class="animate-in">
                   <div class="info letter-container">
@@ -185,99 +185,99 @@ style="display:flex;">
     </div>
     <!-- end sequence slider -->
   </section>
-  
+
   <!-- end featured -->
 
   <!-- where latest news appear -->
-  
+
   <section id="latest_news" >
-  	
+
   	<div class="container">
-  		
+
 
   			<div class="row">
-  			
+
   			{%for news_post in news%}
   			<div class="span6">
-  			
+
   			  <div class="news_container" >
   			  <hr />
   				<img class="news_images" src="{{news_post.images}}" alt="{{news_post.images}}">
   		<a href="{% url 'news:news' news_post.id news_post.url %}" ><h3 class="news">{{news_post.Title}} </h3>
-  
+
   		</a>
   		<p>
   		{% if news_post.summary == None %}
   		{% else %}
   			{{news_post.summary}}
   			{% endif %}
-  			
-  			
+
+
   			<a href="{% url 'news:news' news_post.id news_post.url %}">
-  			  <button type="button"  class="read_btn">Read More 
+  			  <button type="button"  class="read_btn">Read More
   			    <span >
-  			    	
+
   			    </span>
   			  </button>
-  			
-  					
-  				
+
+
+
   			</a>
   			</div>
-  			
+
   			</div>
-  			
-  			{%endfor%}	
-  			
+
+  			{%endfor%}
+
   			</div>
     <!--Pages Buttons-->
-  			<div class="btn-toolbar" role = "toolbar"  
+  			<div class="btn-toolbar" role = "toolbar"
   			aria-label="Websites pages" >
   				<div class="btn-group" role="group" >
-  				<a href="?page=1">	
+  				<a href="?page=1">
   					<button id="pages" class=" btn btn-link btn-sm">Latest
   					</button>
   					</a>
   					{% if news.has_next %}
-  					<a href="?page={{news.next_page_number}}">	
+  					<a href="?page={{news.next_page_number}}">
   			<button id="pages" class=" btn btn-link btn-sm">
   						Next
-  					</button>		
+  					</button>
   					</a>
   					{%endif%}
   					{% if news.has_previous %}
-  						<a href="?page={{news.previous_page_number}}">	
+  						<a href="?page={{news.previous_page_number}}">
   	<button id="pages" class=" btn btn-link btn-sm">
   						Previous
-  						
-  					</button>	
-  				</a>	
+
+  					</button>
+  				</a>
   				{%endif%}
-  							
+
   	<span class="btn disabled" style="background:white;">
   				...
   	</span>
-  				<a href="?page={{total_pages}}">	
+  				<a href="?page={{total_pages}}">
   				<button id="pages" class=" btn btn-link btn-sm">
   						Last
   					</button>
-  				
+
   					</a>
   				</div>
-  				
+
   			</div>
-  			
+
   		</div>
-  		
-  		
+
+
   	</div>
-  				
-  	
+
+
 <section id="scores">
 	<!-- Scores -->
-	
-  
-  
+
+
+
       <div id="Scores" class="container-fluid">
     <h4 style="margin-left:5%" >Most popular matches today</h4>
     <!-- Table for scores -->
@@ -292,7 +292,7 @@ style="display:flex;">
   </thead>
   <tbody>
   	{% for scores in score.first.score_set.all %}
-  	
+
     <tr>
      <td scope="row">
       	<h5>
@@ -306,11 +306,11 @@ style="display:flex;">
     <td>
       {% if scores.home_score == None or scores.away_score == None %}
     <h5 >-----</h5>
-      	
-     
-      	  	
+
+
+
       	{%else%}
-      	 
+
       <h5 >
       	{% if scores.football_posts %}
       	<a href="{% url 'news:news' %}{{scores.football_posts.id}}/{{scores.football_posts.url}}" class="link">{{scores.home_score}}-{{scores.away_score}}</a>	</h5>
@@ -323,7 +323,7 @@ style="display:flex;">
       	</h5>
       </td>
       {%endif%}
-      
+
       <td>
       	<h5>
       	{{scores.away}}
@@ -331,14 +331,14 @@ style="display:flex;">
       	</td>
     </tr>
     {%endfor%}
-  
-   
+
+
   </tbody>
-  
+
 </table>
 
 {% if score.first.score_set.all.exists %}
-      
+
       {%else%}
       <h1 style="text-align:center">No scores available this Today</h1>
       {% endif %}
@@ -346,31 +346,31 @@ style="display:flex;">
 <a href=" {% url 'scores:scores' %}{{date}} " id="all_scores" style="color : green; ">Click to see all scores</a>
   </div>
 
-      
-      
-      	
-      	
+
+
+
+
         <!-- Standings-->
-  
-  
+
+
   <!-- end section services -->
 
   <!-- Standings -->
-  
+
   <section id="standings">
-  	
+
     <div class="row">
-   	
+
    <div class="span7">
    	<hr>
       <div class= "standings">
-      
+
               <div class="accordion" role="tablist">
-            	
+
 <div class="card">
-	
+
     <div class="card-header" role="tab" id="headingOne">
-    	
+
         <a class="accordion-toggle active" data-toggle="collapse" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
         	<h3 class="countries_standings" >
           Standings
@@ -378,15 +378,15 @@ style="display:flex;">
         </a>
       </div>
       </div>
-    </div> 
     </div>
-    
+    </div>
+
 <div class="accordion-body collapse {{in}}" id="collapseOne"  role="tabpanel" aria-labelledby="headingOne">
       <div class="card-body">
-      	
+
       	<form method="get" autocomplete="off" action="#result">
-      	
-      		
+
+
 <div  class="input-group" style="width:100%;">
 	<div class="autocomplete" style="width:70%;">
 {{league_name.leagues_table}}
@@ -418,79 +418,79 @@ style="display:flex;">
       	<ul style = "list-style-type : none;">
       		<li>
       	<div class="card-header" role = "tab" id = "headingtwo">
-      		
+
       			 <a data-toggle="collapse" href="#collapsetwo" aria-expanded="true" aria-controls="collapsetwo">
       		<h4 class="countries_standings">
-      		
+
           Europe
-    
-      			
+
+
       		</h4>
       		    </a>
-      		
-      	
+
+
       	</div>
       	  <!--All Competitions in europe -->
         <div id="collapsetwo" class="collapse show" role="tabpanel" aria-labelledby="headingOne">
       <div class="card-body">
-       
+
        {% for competition in europe_comps%}
         	<a href="{%url 'standings:standing'%}{{competition.europe_competition.url}}">
         		 <h4 >
         		{{competition.europe_competition.leagues_table}}
-         </h4>	
+         </h4>
         		</a>
-       
-               {%endfor%} 
-        
+
+               {%endfor%}
+
         </div>
         </div>
         </li>
-        
+
         <li>
-        
+
       	<div class="card-header" role = "tab" id = "headingtwo">
-      		
+
       			 <a data-toggle="collapse" href="#collapsethree" aria-expanded="true" aria-controls="collapsetwo">
-   
+
    <h4 class="countries_standings">
          Africa
-  
+
  </h4>
         </a>
-      			
+
       	</div>
       	  <!-- Competitions in africa -->
         <div id="collapsethree" class="collapse show" role="tabpanel" aria-labelledby="headingOne">
       <div class="card-body">
-       
+
         		{% for competition in africa_comps %}
         	<a href="{%url 'standings:standing'%}{{competition.africa_competition.url}}" >
         		 <h4 >
         		{{competition.africa_competition.leagues_table}}
-         </h4>	
+         </h4>
         		</a>
-       
-               {%endfor%} 
-        
+
+               {%endfor%}
+
         </div>
         </div>
         </li>
-        
+
         <li>
       	<div class="card-header" role = "tab" id = "headingtwo">
-      		
+
       			 <a data-toggle="collapse" href="#collapsefour" aria-expanded="true" aria-controls="collapsetwo">
-      			 	
+
       			 	<h4 class="countries_standings">
           Asia
           </h4>
         </a>
-      			
-      		
-      	
+
+
+
       	</div>
-      	
+
       	  <!--Competitions in Asia -->
         <div id="collapsefour" class="collapse show" role="tabpanel" aria-labelledby="headingOne">
       <div class="card-body">
@@ -498,30 +498,30 @@ style="display:flex;">
         	<a href="{%url 'standings:standing'%}{{competition.asia_competition.url}}">
         		 <h4 >
         		{{competition.asia_competition.leagues_table}}
-         </h4>	
+         </h4>
         		</a>
-       
-               {%endfor%} 
-        		
+
+               {%endfor%}
+
         </div>
         </div>
         </li>
-        
+
         <li>
       	<div class="card-header" role = "tab" id = "headingtwo">
-      		
+
       			 <a data-toggle="collapse" href="#collapsefive" aria-expanded="true" aria-controls="collapsetwo">
-      		<h4 class="countries_standings"> 	
-      			 	
+      		<h4 class="countries_standings">
+
           North America
           </h4>
         </a>
-      			
-      	
-      	
+
+
+
       	</div>
-      	
-      	
+
+
       	  <!-- Competitions in North America-->
         <div id="collapsefive" class="collapse show" role="tabpanel" aria-labelledby="headingOne">
       <div class="card-body">
@@ -529,29 +529,29 @@ style="display:flex;">
         	<a href="{%url 'standings:standing'%}{{competition.north_america_competition.url}}">
         		 <h4 >
         		{{competition.north_america_competition.leagues_table}}
-         </h4>	
+         </h4>
         		</a>
-       
-               {%endfor%} 
-        
+
+               {%endfor%}
+
         </div>
         </div>
         </li>
-        
+
         <li>
       	<div class="card-header" role = "tab" id = "headingtwo">
-      		
+
       			 <a data-toggle="collapse" href="#collapsesix" aria-expanded="true" aria-controls="collapsetwo">
-      			 	
+
       			 	<h4 class="countries_standings">
           South America
           </h4>
         </a>
-      			
-      		
-      	
+
+
+
       	</div>
-      	
+
       	  <!--Competions in South America -->
         <div id="collapsesix" class="collapse show" role="tabpanel" aria-labelledby="headingOne">
       <div class="card-body">
@@ -559,28 +559,28 @@ style="display:flex;">
         	<a href="{%url 'standings:standing'%}{{competition.south_america_competition.url}}">
         		 <h4 >
         		{{competition.south_america_competition.leagues_table}}
-         </h4>	
+         </h4>
         		</a>
-       
-               {%endfor%} 
-        		
+
+               {%endfor%}
+
         </div>
         </div>
         </li>
         <li>
       	<div class="card-header" role = "tab" id = "headingtwo">
-      		
+
       			 <a data-toggle="collapse" href="#collapseseven" aria-expanded="true" aria-controls="collapsetwo">
-      			 	
+
       			 	<h4 class="countries_standings">
           Australia
           </h4>
         </a>
-      			
-      		
-      	
+
+
+
       	</div>
-      	
+
       	  <!--Competitions in Australia -->
         <div id="collapseseven" class="collapse show" role="tabpanel" aria-labelledby="headingOne">
       <div class="card-body">
@@ -588,27 +588,27 @@ style="display:flex;">
         	<a href="{%url 'standings:standing'%}{{competition.australia_competition.url}}">
         		 <h4 >
         		{{competition.australia_competition.leagues_table}}
-         </h4>	
+         </h4>
         		</a>
-       
-               {%endfor%} 
-        		
+
+               {%endfor%}
+
         </div>
         </div>
         </li>
         <li>
       	<div class="card-header" role = "tab" id = "headingtwo">
-      		
+
       			 <a data-toggle="collapse" href="#collapseeight" aria-expanded="true" aria-controls="collapsetwo">
       			 	<h4 class="countries_standings">
           Others
           </h4>
         </a>
-      			
-      		
-      	
+
+
+
       	</div>
-      	
+
       	  <!--Other Competitions -->
         <div id="collapseeight" class="collapse show" role="tabpanel" aria-labelledby="headingOne">
       <div class="card-body">
@@ -616,42 +616,42 @@ style="display:flex;">
         	<a href="{%url 'standings:standing'%}{{competition.others_competition.url}}">
         		 <h4 >
     	{{competition.others_competition.leagues_table}}
-         </h4>	
+         </h4>
         		</a>
-       
-               {%endfor%} 
-        
+
+               {%endfor%}
+
         </div>
         </div>
         </li>
-        
-        
+
+
         </ul>
-        
-        
-        
-        
-        
+
+
+
+
+
       </div>
-      
+
     </div>
-    
-    
+
+
        </div>
       <!--Transfers -->
      <div class="span5" >
      	<hr>
-     	
+
      	<a href="{% url 'transfers:transfer' %}" >
     <div class="badge badge-secondary "
-     
-     style="width : 95%; 
+
+     style="width : 95%;
      font-style : bold;
       text-shadow: 5px 2px 4px grey;
-     text-align : center ; 
+     text-align : center ;
      letter-spacing : 10px;
-     font-size :200%; 
-     
+     font-size :200%;
+
      padding-top : 6%;
      padding-bottom : 12%;
      color : #0A3C09;
@@ -661,12 +661,12 @@ style="display:flex;">
      border-width :2px;
      "
      >
-     
-     
-     Transfers	
-     	
+
+
+     Transfers
+
   <div style=" " >
-  	<img 
+  	<img
   	class="move "
   	style="width : 20px ; height : 20px ;
   position : relative;
@@ -683,53 +683,53 @@ style="display:flex;">
   	 src="
   {% static	'img/slider/parallax/b_arrow.jpg' %}
   	" alt="">
-  	
+
   </div>
-     
+
      </div>
     </a>
      </div>
      </div>
-    
-    
-    
+
+
+
     </section>
-    
-    
+
+
      <!-- Videos -->
-    
+
        <section>
     	  <div  class="container">
     	<h2 id="videos" >Videos</h2>
     	<hr>
-    		
-    
-    		
-    		
-   
+
+
+
+
+
     <div class="row" >
     	{%for Video in video%}
     		<div class="span6">
 <h3 >    {{Video.video_name}} </h3>
 
 {{Video.embed_video_link | safe}}
-    
-    
+
+
     	</div>
     	{%endfor%}
-    	
+
     	<a href="{%url 'videos:Video'%}">
  <h3>Click to see all videos </h3>
  </a>
  </div>
- 
- 
+
+
     </section>
-    
-    
-    
-  
-  
+
+
+
+
+
   <footer>
     <div class="verybottom">
       <div class="container">
@@ -743,31 +743,31 @@ style="display:flex;">
               </div>
                 {% if user.is_authenticated %}
             <div>
-            	
+
             	<h4><a href="justfootball_administration/" style="color:#753500;">Justfootball administration</a></h4>
             	<h4><a href="{% url 'control_panel' %}" style="color:#753500;">Justfootball Control Panel</a></h4>
-   
+
               {%endif%}
-           
-              
-              
-              
+
+
+
+
               <h4 style="color : #35441F">Thank you for visiting Justfootball</h4>
-            
-              
+
+
               <div class="social-links">
                 <ul class="social-links">
-                  <li><a href="#" title="Twitter"><i class="icon-circled icon-64 icon-twitter"></i></a></li>
+                  <li><a href="https://twitter.com/Davo_boss1?s=09" title="Twitter"><i class="icon-circled icon-64 icon-twitter"></i></a></li>
                   <li><a href="#" title="Facebook"><i class="icon-circled icon-64 icon-facebook"></i></a></li>
                   <li><a href="#" title="Google plus"><i class="icon-circled icon-64 icon-google-plus"></i></a></li>
                   <li><a href="#" title="Linkedin"><i class="icon-circled icon-64 icon-linkedin"></i></a></li>
                   <li><a href="#" title="Pinterest"><i class="icon-circled icon-64 icon-pinterest"></i></a></li>
                 </ul>
-                
+
                 <h4 style="#003000;">Website Created and Designed by David Akinfenwa</h4>
-                
+
                   <ul class="social-links">
-                  <li><a href="#" title="Twitter"><i class="icon-circled icon-32 icon-twitter"></i></a></li>
+                  <li><a href="" title="Twitter"><i class="icon-circled icon-32 icon-twitter"></i></a></li>
                   <li><a href="#" title="Facebook"><i class="icon-circled icon-32 icon-facebook"></i></a></li>
                   <li><a href="#" title="Google plus"><i class="icon-circled icon-32 icon-google-plus"></i></a></li>
                   <li><a href="#" title="Linkedin"><i class="icon-circled icon-32 icon-linkedin"></i></a></li>
@@ -794,30 +794,30 @@ style="display:flex;">
       </div>
     </div>
   </footer>
-  
-  
-  
-  
- 
+
+
+
+
+
 <script>
 
 	/* Set the width of the side navigation to 250px */
 
 	function openNav(){
 		document.getElementById("mysidenav").style.width= "250px";
-		
+
 	}
 	function closeNav(){
 		document.getElementById("mysidenav").style.width= "0px";
 	}
-	
 
-	
-	
+
+
+
 </script>
-  
+
 <script>
-	
+
 var prevScrollpos = window.pageYOffset;
 window.onscroll = function() {
   var currentScrollPos = window.pageYOffset;
@@ -830,21 +830,21 @@ window.onscroll = function() {
 }
 
 </script>
- 
+
   <script>
 
  var count_index = 0;
 
   	var leagues = []
   	var leagues_url = []
-  	
-  
+
+
  {% for league in tables %}
  	leagues[count_index] =  "{{league.leagues_table}}";
  	leagues_url[count_index] =  "{{league.url}}";
  	count_index++;
- 
- 	 	{% endfor %}	
+
+ 	 	{% endfor %}
 
 
 function autocomplete(inp, arr,arr2) {
@@ -952,17 +952,17 @@ document.addEventListener("click", function (e) {
 }
 
  </script>
- 
+
   <script>
 autocomplete(document.getElementById("myInput"),leagues,leagues_url);
 </script>
- 
 
- 
- 
+
+
+
   <script src="{% static 'js/jquery.min.js' %}"></script>
   <script src="{% static 'js/jquery.easing.js' %}"></script>
-  
+
   <script src=" {% static 'js/jquery.lettering.js' %}"></script>
   <script src="{% static 'js/parallax/jquery.parallax-1.1.3.js' %}"></script>
   <script src="{% static 'js/nagging-menu.js' %}"></script>
@@ -980,7 +980,7 @@ autocomplete(document.getElementById("myInput"),leagues,leagues_url);
   <script src="{% static 'js/bootstrap.js' %}"></script>
   <script src=" {% static 'contactform/contactform.js' %}"></script>
 
-  
+
   <script src="{% static 'js/custom.js' %}"></script>
 </body>
 
