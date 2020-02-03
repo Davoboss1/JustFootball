@@ -11,16 +11,16 @@
   <meta name="author" content="">
   {% endblock %}
   <!-- styles -->
-  
- 
-{% load staticfiles %}
- 
- <link href="{% static 'css/bootstrap.css' %} "  rel="stylesheet">
-  
 
-  
-  
-  
+
+{% load staticfiles %}
+
+ <link href="{% static 'css/bootstrap.css' %} "  rel="stylesheet">
+
+
+
+
+
   <link href="{% static 'css/bootstrap-responsive.css' %} " rel="stylesheet">
   <link href="{% static 'css/prettyPhoto.css' %}" rel="stylesheet">
   <link href=" {% static 'font/stylesheet.css' %}
@@ -38,35 +38,35 @@
   <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{% static ' ico/apple-touch-icon-72-precomposed.png ' %}">
   <link rel="apple-touch-icon-precomposed" href="{% static ' ico/apple-touch-icon-57-precomposed.png' %}">
   <link rel="shortcut icon" href=" {% static 'ico/favicon.ico' %}">
-  	
-  	
- 
-  
 
-  
+
+
+
+
+
 </head>
 	<body >
-		
-  
- <header>
-  
-   	 
-          
 
-  
+
+ <header>
+
+
+
+
+
     <!-- start top -->
     <div id="topnav" class="navbar navbar-fixed-top default">
-    	
+
       <div class="navbar-inner">
         <div class="container">
-        	
-    
-          	
-          
-            
-             	
+
+
+
+
+
+
 <div id="mysidenav" class="sidenav">
-	
+
 	<a href="javascript:void(0)" class="closebtn" onclick="closeNav()"> Close &times</a>
 		<a href="{% url 'Homepage' %}">Home</a>
 	<a href="{% url 'Homepage' %}#latest_news" onclick="closeNav()">News</a>
@@ -83,27 +83,27 @@
             	JustFootball
             	</h1>
             	   </a>
-            
-            
 
-            
+
+
+
         <div id="accordion" role="tablist">
   <div class="">
     <div class="" role="tab" id="headingOne">
-      
-	 
+
+
 
         <a data-toggle="collapse" href="#menu_collapse" aria-expanded="true" aria-controls="menu_collapse" class="menu_link">
-         
+
            		 	<span class="icon-search " id="search_menu" style="color:#064500;"  >
-           		 		
-           		 </span> 
+
+           		 </span>
         </a>
-       
-      
+
+
     </div>
-    
-    
+
+
 
     <div  id="menu_collapse" class="collapse show menu_drop" role="tabpanel" aria-labelledby="headingOne">
       <div class="menu_items">
@@ -118,44 +118,44 @@ style="display:flex;">
     icon-search
     " style="font-size:25px;"></span>
     </button>
-    
+
   </span>
 
-   
+
     </div>
        </form>
-        	
-      
+
+
   </div>
-  
+
 </div>
 
 </div>
-            
-            
-                  
-          
- 
-         
-          
+
+
+
+
+
+
+
         </div>
       </div>
     </div>
     <!-- end top -->
-    
-    
-    
+
+
+
 
   </header>
 
-  
 
-  
- 
+
+
+
   {%block content%}
-  
+
    <section id="featured" onclick="closeNav() ">
- 
+
         <div class="container">
       <div class="row">
         <div class="span12">
@@ -166,14 +166,14 @@ style="display:flex;">
         </div>
       </div>
     </div>
-      
+
   </section>
-		
+
 
    {% endblock %}
-     
-  
-  
+
+
+
     <footer>
     <div class="verybottom">
       <div class="container">
@@ -187,15 +187,15 @@ style="display:flex;">
               </div>
                {% if user.is_authenticated %}
             <div>
-            	
-            	<h4><a href="justfootball_administration/" style="color:#753500;">Justfootball administration</a></h4>
+
+            	<h4><a href="../../../../justfootball_administration/" style="color:#753500;">Justfootball administration</a></h4>
             	<h4><a href="{% url 'control_panel' %}" style="color:#753500;">Justfootball Control Panel</a></h4>
-   
+
               {%endif%}
-           
+
               <h4 style="color : #35441F">Thank you for visiting Justfootball</h4>
-              
-              
+
+
               <div class="social-links">
                 <ul class="social-links">
                   <li><a href="#" title="Twitter"><i class="icon-circled icon-64 icon-twitter"></i></a></li>
@@ -204,9 +204,9 @@ style="display:flex;">
                   <li><a href="#" title="Linkedin"><i class="icon-circled icon-64 icon-linkedin"></i></a></li>
                   <li><a href="#" title="Pinterest"><i class="icon-circled icon-64 icon-pinterest"></i></a></li>
                 </ul>
-                
+
                 <h4 style="#003000;">Website Created and Designed by David Akinfenwa</h4>
-                
+
                   <ul class="social-links">
                   <li><a href="#" title="Twitter"><i class="icon-circled icon-32 icon-twitter"></i></a></li>
                   <li><a href="#" title="Facebook"><i class="icon-circled icon-32 icon-facebook"></i></a></li>
@@ -235,25 +235,25 @@ style="display:flex;">
       </div>
     </div>
   </footer>
-  
+
   <script>
 	/* Set the width of the side navigation to 250px */
 
 	function openNav(){
 		document.getElementById("mysidenav").style.width= "250px";
-		
+
 	}
 	function closeNav(){
 		document.getElementById("mysidenav").style.width= "0px";
 	}
-	
 
-	
-	
+
+
+
 </script>
-  
+
 <script>
-	
+
 var prevScrollpos = window.pageYOffset;
 window.onscroll = function() {
   var currentScrollPos = window.pageYOffset;
@@ -266,8 +266,8 @@ window.onscroll = function() {
 }
 
 </script>
-  
-  
+
+
  <script src="{% static 'js/jquery.min.js' %}"></script>
   <script src="{% static 'js/jquery.easing.js' %}"></script>
   <script src="{% static 'js/bootstrap.js' %}"></script>
@@ -285,13 +285,13 @@ window.onscroll = function() {
   <script src="{% static 'js/prettyPhoto/setting.js' %}"></script>
   <script src="{% static 'js/jquery.flexslider.js' %}"></script>
 
-  
+
   <script src=" {% static 'contactform/contactform.js' %}"></script>
 
-  
+
   <script src="{% static 'js/custom.js' %}"></script>
-  
-  
- 
+
+
+
    </body>
 </html>

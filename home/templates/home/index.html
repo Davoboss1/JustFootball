@@ -173,7 +173,7 @@ style="display:flex;">
                   </div>
                   <h4 class="subtitle">{{slide.subtitle}}</h4>
                   <div class="righttop">
-                    <img src="{{slide.image_link}}" alt="">
+                    <img src="{{slide.image}}" alt="">
                   </div>
                 </li>
                 {% endfor %}
@@ -340,7 +340,7 @@ style="display:flex;">
 {% if score.first.score_set.all.exists %}
 
       {%else%}
-      <h1 style="text-align:center">No scores available this Today</h1>
+      <h1 style="text-align:center">No scores available Today</h1>
       {% endif %}
 
 <a href=" {% url 'scores:scores' %}{{date}} " id="all_scores" style="color : green; ">Click to see all scores</a>
