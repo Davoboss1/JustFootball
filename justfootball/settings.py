@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'standings',
     'videos' ,
     'transfers',
+    'django_extensions',
 ]
 
 
@@ -86,17 +87,22 @@ WSGI_APPLICATION = 'justfootball.wsgi.application'
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
+'default': {
 'ENGINE': 'django.db.backends.mysql',
 'NAME': 'DavoBoss1$default',
 'USER': 'DavoBoss1',
 'PASSWORD': 'Davoakin',
 'HOST': 'DavoBoss1.mysql.pythonanywhere-services.com',
 'PORT': '3306',
-},
+},	
 }
 
-
+'''
+'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    },
+'''
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
 
@@ -136,14 +142,7 @@ USE_TZ = True
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
-
-
 '''
-
 STATICFILES_DIRS = [ str(BASE_DIR)+"/static/",
 ]
 '''
-
-
-
-
