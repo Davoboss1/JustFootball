@@ -88,6 +88,6 @@ def run():
     	if football_posts.objects.filter(Title=data.title,summary=data.summary).exists():
     		print("Exists")    	
     	else:
-    		football_posts.objects.create(Title=data.title,images=data.image,summary=data.summary,news=data.news,Date=date.today())
+    		football_posts.objects.create(Title=data.title,images=data.image,summary=data.summary,news=data.news)
     		print("Adding to database")
 
