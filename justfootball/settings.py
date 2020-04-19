@@ -27,7 +27,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '%d828_2!117%7!i6os-1+48ctcazk%-rphgmobe9dl%s!jc=_='
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['davoboss1.pythonanywhere.com','127.0.0.1']
 
@@ -88,13 +88,6 @@ WSGI_APPLICATION = 'justfootball.wsgi.application'
 
 DATABASES = {
 'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    },
-}
-
-'''
-'default': {
 'ENGINE': 'django.db.backends.mysql',
 'NAME': 'DavoBoss1$default',
 'USER': 'DavoBoss1',
@@ -102,6 +95,13 @@ DATABASES = {
 'HOST': 'DavoBoss1.mysql.pythonanywhere-services.com',
 'PORT': '3306',
 },
+}
+
+'''
+'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    },
 '''
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
@@ -139,7 +139,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
-STATIC_ROOT = os.path.join(BASE_DIR, "static")
+#STATIC_ROOT = os.path.join(BASE_DIR, "static")
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
-#STATICFILES_DIRS = [str(BASE_DIR)+"/static/",]
+STATICFILES_DIRS = [str(BASE_DIR)+"/static/",]

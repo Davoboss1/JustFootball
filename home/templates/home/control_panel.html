@@ -7,14 +7,26 @@
   <meta name="author" content="">
    	
       <title>JustFootball Control Panel</title>
-      {% load staticfiles %}
+      {% load static %}
       <link rel="stylesheet" href="{% static 'bootstrap_css/bootstrap.min.css' %}" >
       	<link rel="stylesheet" href="{% static 'bootstrap_css/jcp_style.css' %}">
       	
       		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
       			
 <link href="https://fonts.googleapis.com/css?family=Lobster|Raleway:400i" rel="stylesheet">
+	<style>
+	input,textarea,select{
+		max-width:350px;
+		min-width:50px;
+	}
 	
+	h5{
+	margin-top:5%;
+	background:white;
+	border-radius:5px;
+	text-align:center;
+	}
+	</style>
    </head>
    <body>
    	<h2 class="head">
@@ -32,7 +44,7 @@
    		
    	</h2>
    	
-   <ul class="list-group list">
+   <ul class="list-group">
     <li class="list-group-item"> <a href="../justfootball_administration/home/slider/">Add Slider
   </a> 
   </li>
@@ -67,7 +79,11 @@
   </li>
   
 </ul>
-{%endblock%}
+
+<a href="{% url 'logout' %}" class="btn btn-warning m-3">
+Logout
+</a>
+{% endblock %}
 
    <script>
     	function addImage(){
@@ -76,6 +92,24 @@
     		var newstext = document.getElementById("newstext");
     		newstext.value =  newstext.value + '    <img src=" " alt="">       ' ;
     	}
+    	
+    	(function(){
+    	
+    	var inputs = document.getElementsByTagName("input");
+    	var selects = document.getElementsByTagName("select");
+    	var text_areas = document.getElementsByTagName("textarea");
+    	
+    	
+    	for(var i = 0; i < inputs.length; i++){
+    		inputs[i].className += " form-control";
+    	}
+    	for(var i = 0; i < selects.length; i++){
+    		selects[i].className += " form-control";
+    	}
+    	for(var i = 0; i < text_areas.length; i++){
+    		text_areas[i].className += " form-control";
+    	}
+    	})();
     	
     </script>
 <script src="{% static 'bootstrap_js/jquery-3.3.1.slim.min.js' %}">

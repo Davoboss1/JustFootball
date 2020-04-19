@@ -38,9 +38,9 @@ class post_football(ModelForm):
 		fields = ('Title','match','images','summary','news')
 		widgets = {
 		'Title' : widgets.Textarea(attrs = {'cols' : 35 , 'rows' : 2 ,'placeholder' : 'Title',}),
-		
-		"match_news" : widgets.Select(attrs={"name":"news" ,"style":"width:50%",}),
+		"match" : widgets.Select(attrs={"class" : "form-control","name":"news" ,"style":"max-width:350px",}),
+		"match_news" : widgets.Select(attrs={"class" : "form-control","name":"news" ,"style":"max-width:350px",}),
 		'images' : widgets.URLInput(attrs = {'placeholder' : 'Images Links' , 'style' : 'width:100%',}),
 		'summary' : widgets.Textarea(attrs = {'cols' : 35 , 'rows' : 3 , 'placeholder' : 'Summary' ,}),
-		'news' : widgets.Textarea(attrs = {'cols' : 35 , 'rows' : 20 , 'id' : 'newstext' ,}),
+		'news' : widgets.Textarea(attrs = {'cols' : 35 , 'rows' : 10 , 'id' : 'newstext' ,}),
 		}

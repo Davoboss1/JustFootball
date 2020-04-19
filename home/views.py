@@ -15,6 +15,8 @@ from videos.models import Video
 import time
 from django.http import QueryDict
 from justfootball import settings
+from django.contrib.auth import authenticate,login
+from django.contrib import messages
 '''
 class news(generic.ListView):
 	template_name = 'home/index.html'
@@ -39,8 +41,17 @@ def control_panel(request):
 	else:
 		raise Http404("Page does not exist")
 
-
-
+def login_view(request):
+	if request.method == "POST":
+		username = request.POST.get("username")
+		password = request.POST.get("password")
+		user = authenticate(request,username=username,password=password)
+		if user is not None:
+			login(request,user)
+			return redirect("control_panel")
+		else:
+			messages.error(request,"Username or password incorrect.")
+	return render(request,"home/login.html",{})
 	
 def homepage(request):
 	show  = str()

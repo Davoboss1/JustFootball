@@ -19,14 +19,14 @@ from django.urls import path
 from django.conf.urls import url , include 
 #from home import views
 from home import views
-
-
-
+from django.contrib.auth.views import logout_then_login
 
 urlpatterns = [
 path('justfootball_administration/', admin.site.urls),
 path('', views.homepage, name="Homepage"),
+path("logout/",logout_then_login,{"login_url":"login"},name="logout"),
 path('control_panel/',views.control_panel,name="control_panel"),
+path("login/",views.login_view,name="login"),
 path('',include('standings.url')),
 path('',include("scores.url")),
 path('' ,include("news.url")),	path('',include("transfers.url")),
