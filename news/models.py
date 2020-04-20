@@ -7,7 +7,7 @@ class football_posts(models.Model):
 	
 	Title = models.CharField(max_length = 100)
 	match = models.OneToOneField(score,on_delete=models.SET_NULL,null=True,blank=True)
-	images = models.URLField()
+	image = models.ImageField(upload_to="news_images",null=True,blank=True)
 	summary = models.CharField(max_length = 500,null=True , blank = True )
 	news = models.TextField()
 	url = models.SlugField(max_length=500,null=True,editable=False)
@@ -35,12 +35,12 @@ class football_posts(models.Model):
 class post_football(ModelForm):
 	class Meta:
 		model = football_posts
-		fields = ('Title','match','images','summary','news')
+		fields = ('Title','match','image','summary','news')
 		widgets = {
 		'Title' : widgets.Textarea(attrs = {'cols' : 35 , 'rows' : 2 ,'placeholder' : 'Title',}),
 		"match" : widgets.Select(attrs={"class" : "form-control","name":"news" ,"style":"max-width:350px",}),
 		"match_news" : widgets.Select(attrs={"class" : "form-control","name":"news" ,"style":"max-width:350px",}),
-		'images' : widgets.URLInput(attrs = {'placeholder' : 'Images Links' , 'style' : 'width:100%',}),
+		'images' : widgets.FileInput(attrs = {'placeholder' : 'Select image' , 'style' : 'width:100%',}),
 		'summary' : widgets.Textarea(attrs = {'cols' : 35 , 'rows' : 3 , 'placeholder' : 'Summary' ,}),
 		'news' : widgets.Textarea(attrs = {'cols' : 35 , 'rows' : 10 , 'id' : 'newstext' ,}),
 		}

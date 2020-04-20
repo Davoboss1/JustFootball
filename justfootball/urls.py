@@ -20,6 +20,8 @@ from django.conf.urls import url , include
 #from home import views
 from home import views
 from django.contrib.auth.views import logout_then_login
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
 path('justfootball_administration/', admin.site.urls),
@@ -33,3 +35,6 @@ path('' ,include("news.url")),	path('',include("transfers.url")),
 path('',include("videos.url"))
     
 ] 
+if settings.DEBUG:
+	urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+	urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

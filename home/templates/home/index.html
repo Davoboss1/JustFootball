@@ -173,7 +173,9 @@ style="display:flex;">
                   </div>
                   <h4 class="subtitle">{{slide.subtitle}}</h4>
                   <div class="righttop">
-                    <img src="{{slide.image}}" alt="">
+                  {% if slide.image %}
+                    <img src="{{slide.image.url}}" alt="">
+                  {% endif %}
                   </div>
                 </li>
                 {% endfor %}
@@ -202,8 +204,10 @@ style="display:flex;">
 
   			  <div class="news_container" >
   			  <hr />
-  				<img class="news_images" src="{{news_post.images}}" alt="{{news_post.images}}">
-  		<a href="{% url 'news:news' news_post.id news_post.url %}" ><h3 class="news">{{news_post.Title}} </h3>
+  			    {% if news_post.image %}
+  				<img class="news_images" src="{{news_post.image}}" alt="{{news_post.images}}">
+  				{% endif %}
+  				<a href="{% url 'news:news' news_post.id news_post.url %}" ><h3 class="news">{{news_post.Title}} </h3>
 
   		</a>
   		<p>
@@ -763,8 +767,6 @@ style="display:flex;">
                   <li><a href="#" title="Linkedin"><i class="icon-circled icon-64 icon-linkedin"></i></a></li>
                   <li><a href="#" title="Pinterest"><i class="icon-circled icon-64 icon-pinterest"></i></a></li>
                 </ul>
-
-                <h4 style="#003000;">Website Created and Designed by David Akinfenwa</h4>
 
                   <ul class="social-links">
                   <li><a href="" title="Twitter"><i class="icon-circled icon-32 icon-twitter"></i></a></li>
