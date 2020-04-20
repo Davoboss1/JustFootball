@@ -102,7 +102,7 @@
   			<h4> {{post.Title}}  </h4>
   			<h6> {{post.created_at}} </h6>
   		{% if post.image %}
-  		<img class="news_images" src="{{post.image.url}}" alt="JustFootball Image">
+  		<img class="news_images" src="{{post.image.url}}" alt="JustFootball Image" style="max-width:100℅; max-height:500px;"  >
   		{% endif %}
   			<div class="posts" >
   		{{post.news  | safe | linebreaks }}
