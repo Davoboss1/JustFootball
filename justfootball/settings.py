@@ -27,7 +27,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '%d828_2!117%7!i6os-1+48ctcazk%-rphgmobe9dl%s!jc=_='
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['davoboss1.pythonanywhere.com','127.0.0.1']
 
