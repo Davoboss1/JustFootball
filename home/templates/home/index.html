@@ -1,0 +1,921 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>JustFootball The home of football</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <!--Loading all styles for this page -->
+  {%load static %}
+
+  <link href="{% static 'css/bootstrap.css' %} " rel="stylesheet">
+  <link href="{% static 'css/bootstrap-responsive.css' %} " rel="stylesheet">
+  <link href="{% static 'css/prettyPhoto.css' %}" rel="stylesheet">
+  <link href=" {% static 'font/stylesheet.css' %}
+  " rel="stylesheet">
+  <link href=" {% static 'css/animate.css' %}
+  " rel="stylesheet">
+  <link href="{% static 'css/flexslider.css' %}  " rel="stylesheet">
+  <link rel="stylesheet" media="screen" href="{% static 'css/sequencejs.css' %} ">
+  <link href=" {% static 'css/style.css' %} " rel="stylesheet">
+  <link href=" {% static 'color/default.css' %} " rel="stylesheet">
+
+  <!-- Fav and touch icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144"
+    href="{% static 'ico/apple-touch-icon-144-precomposed.png' %} ">
+  <link rel="apple-touch-icon-precomposed" sizes="114x114"
+    href=" {% static 'ico/apple-touch-icon-114-precomposed.png' %}">
+  <link rel="apple-touch-icon-precomposed" sizes="72x72"
+    href="{% static ' ico/apple-touch-icon-72-precomposed.png ' %}">
+  <link rel="apple-touch-icon-precomposed" href="{% static ' ico/apple-touch-icon-57-precomposed.png' %}">
+  <link rel="shortcut icon" href=" {% static 'ico/favicon.ico' %}">
+  <!-- =======================================================
+    Theme Name: Selecao
+    Theme URL: https://bootstrapmade.com/selecao-bootstrap-template/
+    Author: BootstrapMade.com
+    Author URL: https://bootstrapmade.com
+  ======================================================= -->
+</head>
+
+<body>
+
+
+  <header>
+
+    <!-- start top -->
+    <div id="topnav" class="navbar navbar-fixed-top default">
+
+      <div class="navbar-inner">
+        <div class="container">
+
+          <div id="mysidenav" class="sidenav">
+
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"> Close &times</a>
+            <a href="{% url 'Homepage' %}">Home</a>
+            <a href="#latest_news" onclick="closeNav()">News</a>
+            <a href="#scores" onclick="closeNav()">Scores</a>
+            <a href="#standings" onclick="closeNav()">Standings</a>
+            <a href="{% url 'transfers:transfer' %}">Transfers</a>
+            <a href="{% url 'videos:Video' %}">Videos</a>
+            <img src="{% static 'img/JustFootball.png' %}" alt="" style="height:60%;">
+          </div>
+          
+         <div style="display: flex;">
+            <span onclick="openNav()" class="icon-reorder" id="menu" style="color:#064500;"></span>
+            <a id="justfootball" href="{% url 'Homepage' %}" style="width: 100px; margin: 0 auto; display: block;">
+            <h1 class="website-name">
+              JustFootball
+            </h1>
+            </a>
+              <a data-toggle="collapse" href="#menu_collapse" aria-expanded="true" aria-controls="menu_collapse"
+                  class="menu_link">
+                  <span class="icon-search " id="search_menu" style="color:#064500;">
+                  </span>
+                </a>
+         </div>
+          
+
+              <div id="menu_collapse" class="collapse show menu_drop" style="margin-top: 0;" role="tabpanel" aria-labelledby="headingOne">
+                <div class="menu_items">
+                  <form method="get">
+                    <div style="display:flex; justify-content: space-around;">
+
+                      <input type="text" class="form-control" name="search" placeholder="Search Website" aria-label=""
+                        aria-describedby="basic-addon1" style="margin-left: auto; height : 2px; width :70%; margin-top : 5px; max-width: 300px;
+  ">
+                      <button id="search" class="btn btn-primary " type="submit"
+                        style="height:5%; margin-top:5px; margin-right: auto; margin-left: 10px; padding: 10px;">
+                        <span class="
+    icon-search
+    " style="font-size:25px;"></span>
+                      </button>
+
+                      </span>
+
+
+                    </div>
+                  </form>
+
+                </div>
+
+              </div>
+
+        </div>
+      </div>
+      <!-- end top -->
+  </header>
+  <!-- For Slider -->
+  <!-- section featured -->
+  <section id="featured" style="max-height: 400px; padding-top: 50px;">
+
+    <!--    sequence slider -->
+
+    <div id="sequence-theme">
+      <img class="prev" src="{% static 'img/bt-prev.png' %}" alt="Previous">
+      <img class="next" src="{% static 'img/bt-next.png' %}" alt="Next">
+      <div class="container">
+        <div class="row">
+          <div class="span12">
+            <div id="sequence">
+              <ul>
+
+                {% for slide in slider %}
+                <li class="animate-in">
+                  <div class="info letter-container">
+                    {% if slide.Post != None %}
+                    <a href="{% url 'news:news' slide.Post.id slide.Post.url %}">
+                      <h2 class="fade">{{slide.Title}}</h2>
+                    </a>
+                    {% elif slide.Post == None %}
+                    <h2 class="fade">{{slide.Title}}</h2>
+                    {% endif %}
+                  </div>
+                  <h4 class="subtitle">{{slide.subtitle}}</h4>
+                  <div class="righttop">
+                    {% if slide.image %}
+
+                    <img src="{{slide.image.url}}" alt="" style="max-width:100%; max-height:250px;">
+                    {% endif %}
+                  </div>
+                </li>
+                {% endfor %}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end sequence slider -->
+  </section>
+
+  <!-- end featured -->
+
+  <!-- where latest news appear -->
+
+  <section id="latest_news">
+    <div class="container p-3">
+      <div class="row">
+        {%for news_post in news%}
+        <div class="span6">
+          <div class="news_container">
+            <hr />
+            {% if news_post.image %}
+            <img class="news_images mx-auto" src="{{news_post.image.url}}"
+              alt="{{news_post.images}}">
+            {% endif %}
+            <a href="{% url 'news:news' news_post.id news_post.url %}">
+              <h3 class="news">{{news_post.Title}} </h3>
+            </a>
+            <p>
+              {% if news_post.summary == None %}
+              {% else %}
+              {{news_post.summary}}
+              {% endif %}
+              <br>
+              <a href="{% url 'news:news' news_post.id news_post.url %}">
+                <button type="button" class="read_btn">Read More
+                </button>
+              </a>
+          </div>
+        </div>
+        {%endfor%}
+      </div>
+      <!--Pages Buttons-->
+      <div class="btn-toolbar" role="toolbar" aria-label="Websites pages">
+        <div class="btn-group" role="group">
+          <a href="?page=1">
+            <button id="pages" class=" btn btn-link btn-sm">Latest
+            </button>
+          </a>
+          {% if news.has_next %}
+          <a href="?page={{news.next_page_number}}">
+            <button id="pages" class=" btn btn-link btn-sm">
+              Next
+            </button>
+          </a>
+          {%endif%}
+          {% if news.has_previous %}
+          <a href="?page={{news.previous_page_number}}">
+            <button id="pages" class=" btn btn-link btn-sm">
+              Previous
+
+            </button>
+          </a>
+          {%endif%}
+
+          <span class="btn disabled" style="background:white;">
+            ...
+          </span>
+          <a href="?page={{total_pages}}">
+            <button id="pages" class=" btn btn-link btn-sm">
+              Last
+            </button>
+
+          </a>
+        </div>
+
+      </div>
+
+    </div>
+
+
+    </div>
+
+
+    <section id="scores">
+      <!-- Scores -->
+
+
+
+      <div id="Scores" class="container-fluid">
+        <h4 style="margin-left:5%">Most popular matches today</h4>
+        <!-- Table for scores -->
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Time</th>
+              <th>Home</th>
+              <th>Scores</th>
+              <th>Away</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for scores in score.first.score_set.all %}
+
+            <tr>
+              <td scope="row">
+                <h5>
+                  {{scores.time}}
+                </h5>
+              </td>
+              <td>
+                <h5>
+                  {{scores.home}}
+                </h5>
+              </td>
+              <td>
+                {% if scores.home_score == None or scores.away_score == None %}
+                <h5>-----</h5>
+
+
+
+                {%else%}
+
+                <h5>
+                  {% if scores.football_posts %}
+                  <a href="{% url 'news:news' %}{{scores.football_posts.id}}/{{scores.football_posts.url}}"
+                    class="link">{{scores.home_score}}-{{scores.away_score}}</a>
+                </h5>
+                {% else %}
+                <h5>
+                  {{scores.home_score}}
+                  -
+                  {{scores.away_score}} </h5>
+                {% endif %}
+                </h5>
+              </td>
+              {%endif%}
+
+              <td>
+                <h5>
+                  {{scores.away}}
+                </h5>
+              </td>
+            </tr>
+            {%endfor%}
+
+
+          </tbody>
+
+        </table>
+
+        {% if score.first.score_set.all.exists %}
+
+        {%else%}
+        <h1 style="text-align:center">No scores available Today</h1>
+        {% endif %}
+
+        <a href=" {% url 'scores:scores' %}{{date}} " id="all_scores" style="color : green; ">Click to see all
+          scores</a>
+      </div>
+
+
+
+
+
+      <!-- Standings-->
+
+
+      <!-- end section services -->
+
+      <!-- Standings -->
+
+      <section id="standings">
+
+        <div class="row">
+
+          <div class="span7">
+            <hr>
+            <div class="standings">
+
+              <div class="accordion" role="tablist">
+
+                <div class="card">
+
+                  <div class="card-header" role="tab" id="headingOne">
+
+                    <a class="accordion-toggle active" data-toggle="collapse" href="#collapseOne" aria-expanded="true"
+                      aria-controls="collapseOne">
+                      <h3 class="countries_standings">
+                        Standings
+                      </h3>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion-body collapse {{in}}" id="collapseOne" role="tabpanel" aria-labelledby="headingOne">
+              <div class="card-body">
+
+                <form method="get" autocomplete="off" action="#result">
+
+
+                  <div class="input-group" style="width:100%;">
+                    <div class="autocomplete" style="width:70%;">
+                      {{league_name.leagues_table}}
+
+                    </div>
+                    <span>
+                      <button id="search" class="btn btn-primary " type="submit" style="width :27%;">
+                        Search <span class="
+    icon-search
+    "></span>
+                      </button>
+                    </span>
+                  </div>
+
+                </form>
+
+                <div id="result">
+                  {% if league_search_result != None %}
+                  <h3 style="text-align:center;">Result for searched league</h3>
+                  {% endif %}
+                  {% for league in league_search_result %}
+                  <hr>
+                  <a href="{% url 'standings:standing' league.url %}" class="result_links">{{league.leagues_table}}</a>
+                  {% endfor %}
+                  <hr>
+                </div>
+
+                <!-- List of all Continents-->
+                <ul style="list-style-type : none;">
+                  <li>
+                    <div class="card-header" role="tab" id="headingtwo">
+
+                      <a data-toggle="collapse" href="#collapsetwo" aria-expanded="true" aria-controls="collapsetwo">
+                        <h4 class="countries_standings">
+
+                          Europe
+
+
+                        </h4>
+                      </a>
+
+
+                    </div>
+                    <!--All Competitions in europe -->
+                    <div id="collapsetwo" class="collapse show" role="tabpanel" aria-labelledby="headingOne">
+                      <div class="card-body">
+
+                        {% for competition in europe_comps%}
+                        <a href="{%url 'standings:standing'%}{{competition.europe_competition.url}}">
+                          <h4>
+                            {{competition.europe_competition.leagues_table}}
+                          </h4>
+                        </a>
+
+                        {%endfor%}
+
+                      </div>
+                    </div>
+                  </li>
+
+                  <li>
+
+                    <div class="card-header" role="tab" id="headingtwo">
+
+                      <a data-toggle="collapse" href="#collapsethree" aria-expanded="true" aria-controls="collapsetwo">
+
+                        <h4 class="countries_standings">
+                          Africa
+
+                        </h4>
+                      </a>
+
+                    </div>
+                    <!-- Competitions in africa -->
+                    <div id="collapsethree" class="collapse show" role="tabpanel" aria-labelledby="headingOne">
+                      <div class="card-body">
+
+                        {% for competition in africa_comps %}
+                        <a href="{%url 'standings:standing'%}{{competition.africa_competition.url}}">
+                          <h4>
+                            {{competition.africa_competition.leagues_table}}
+                          </h4>
+                        </a>
+
+                        {%endfor%}
+
+                      </div>
+                    </div>
+                  </li>
+
+                  <li>
+                    <div class="card-header" role="tab" id="headingtwo">
+
+                      <a data-toggle="collapse" href="#collapsefour" aria-expanded="true" aria-controls="collapsetwo">
+
+                        <h4 class="countries_standings">
+                          Asia
+                        </h4>
+                      </a>
+
+
+
+                    </div>
+
+                    <!--Competitions in Asia -->
+                    <div id="collapsefour" class="collapse show" role="tabpanel" aria-labelledby="headingOne">
+                      <div class="card-body">
+                        {% for competition in asia_comps %}
+                        <a href="{%url 'standings:standing'%}{{competition.asia_competition.url}}">
+                          <h4>
+                            {{competition.asia_competition.leagues_table}}
+                          </h4>
+                        </a>
+
+                        {%endfor%}
+
+                      </div>
+                    </div>
+                  </li>
+
+                  <li>
+                    <div class="card-header" role="tab" id="headingtwo">
+
+                      <a data-toggle="collapse" href="#collapsefive" aria-expanded="true" aria-controls="collapsetwo">
+                        <h4 class="countries_standings">
+
+                          North America
+                        </h4>
+                      </a>
+
+
+
+                    </div>
+
+
+                    <!-- Competitions in North America-->
+                    <div id="collapsefive" class="collapse show" role="tabpanel" aria-labelledby="headingOne">
+                      <div class="card-body">
+                        {% for competition in north_america_comps %}
+                        <a href="{%url 'standings:standing'%}{{competition.north_america_competition.url}}">
+                          <h4>
+                            {{competition.north_america_competition.leagues_table}}
+                          </h4>
+                        </a>
+
+                        {%endfor%}
+
+                      </div>
+                    </div>
+                  </li>
+
+                  <li>
+                    <div class="card-header" role="tab" id="headingtwo">
+
+                      <a data-toggle="collapse" href="#collapsesix" aria-expanded="true" aria-controls="collapsetwo">
+
+                        <h4 class="countries_standings">
+                          South America
+                        </h4>
+                      </a>
+
+
+
+                    </div>
+
+                    <!--Competions in South America -->
+                    <div id="collapsesix" class="collapse show" role="tabpanel" aria-labelledby="headingOne">
+                      <div class="card-body">
+                        {% for competition in south_america_comps %}
+                        <a href="{%url 'standings:standing'%}{{competition.south_america_competition.url}}">
+                          <h4>
+                            {{competition.south_america_competition.leagues_table}}
+                          </h4>
+                        </a>
+
+                        {%endfor%}
+
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="card-header" role="tab" id="headingtwo">
+
+                      <a data-toggle="collapse" href="#collapseseven" aria-expanded="true" aria-controls="collapsetwo">
+
+                        <h4 class="countries_standings">
+                          Australia
+                        </h4>
+                      </a>
+
+
+
+                    </div>
+
+                    <!--Competitions in Australia -->
+                    <div id="collapseseven" class="collapse show" role="tabpanel" aria-labelledby="headingOne">
+                      <div class="card-body">
+                        {% for competition in australia_comps %}
+                        <a href="{%url 'standings:standing'%}{{competition.australia_competition.url}}">
+                          <h4>
+                            {{competition.australia_competition.leagues_table}}
+                          </h4>
+                        </a>
+
+                        {%endfor%}
+
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="card-header" role="tab" id="headingtwo">
+
+                      <a data-toggle="collapse" href="#collapseeight" aria-expanded="true" aria-controls="collapsetwo">
+                        <h4 class="countries_standings">
+                          Others
+                        </h4>
+                      </a>
+
+
+
+                    </div>
+
+                    <!--Other Competitions -->
+                    <div id="collapseeight" class="collapse show" role="tabpanel" aria-labelledby="headingOne">
+                      <div class="card-body">
+                        {% for competition in others_comps %}
+                        <a href="{%url 'standings:standing'%}{{competition.others_competition.url}}">
+                          <h4>
+                            {{competition.others_competition.leagues_table}}
+                          </h4>
+                        </a>
+
+                        {%endfor%}
+
+                      </div>
+                    </div>
+                  </li>
+
+
+                </ul>
+
+
+
+
+
+              </div>
+
+            </div>
+
+
+          </div>
+          <!--Transfers -->
+          <div class="span5">
+            <hr>
+
+            <a href="{% url 'transfers:transfer' %}">
+              <div class="badge badge-secondary " style="width : 95%;
+     font-style : bold;
+     text-shadow: 5px 2px 4px grey;
+     text-align : center ;
+     letter-spacing : 10px;
+     font-size :200%;
+     padding-top : 6%;
+     padding-bottom : 12%;
+     color : #0A3C09;
+     background-color : #FFFFFF;
+     border-style : solid;
+     border-radius : 20px;
+     border-width :2px;
+     max-width: 300px;
+     display: block;
+     margin: 0 auto;
+     ">
+
+
+                Transfers
+
+                <div style=" ">
+                  <img class="move " style="width : 20px ; height : 20px ;
+  position : relative;
+  top : 40px;
+  right :110px;
+  " src="{% static 'img/slider/parallax/f_arrow.jpg' %}
+  	" alt="">
+                  <img class="moveback" style="
+  	width : 20px ; height : 20px ;
+  position :relative;
+  top : 15px;
+  left : 110px;
+  	" src="
+  {% static	'img/slider/parallax/b_arrow.jpg' %}
+  	" alt="">
+
+                </div>
+
+              </div>
+            </a>
+          </div>
+        </div>
+
+
+
+      </section>
+
+
+      <!-- Videos -->
+
+      <section>
+        <div class="container">
+          <h2 id="videos">Videos</h2>
+          <hr>
+
+
+
+
+
+          <div class="row">
+            {%for Video in video%}
+            <div class="span6">
+              <h3> {{Video.video_name}} </h3>
+
+              {{Video.embed_video_link | safe}}
+
+
+            </div>
+            {%endfor%}
+
+            <a href="{%url 'videos:Video'%}">
+              <h3>Click to see all videos </h3>
+            </a>
+          </div>
+
+
+      </section>
+
+
+
+
+
+      <footer style="max-height: 400px; bottom: 0; overflow: hidden; padding-bottom: 100px;">
+        <div class="verybottom">
+          <div class="container">
+            <div class="row">
+              <div class="span12">
+                <div class="aligncenter">
+                  <div class="logo">
+                    <a class="brand" href="{% url 'Homepage' %}">
+                      <img src="{% static 'img/JustFootball.png' %}" style="max-width: 200px; max-height: 200px;" alt="">
+                    </a>
+                  </div>
+                  {% if user.is_authenticated %}
+                  <div>
+
+                    <h4><a href="justfootball_administration/" style="color:#753500;">Justfootball administration</a>
+                    </h4>
+                    <h4><a href="{% url 'control_panel' %}" style="color:#753500;">Justfootball Control Panel</a></h4>
+
+                    {%endif%}
+
+                    <h4 style="color : #35441F">Thank you for visiting Justfootball</h4>
+
+                    <div class="social-links">
+                      <ul class="social-links">
+                        <li><a href="https://twitter.com/Davo_boss1?s=09" title="Twitter"><i
+                              class="icon-circled icon-64 icon-twitter"></i></a></li>
+                        <li><a href="#" title="Facebook"><i class="icon-circled icon-64 icon-facebook"></i></a></li>
+                        <li><a href="#" title="Google plus"><i class="icon-circled icon-64 icon-google-plus"></i></a>
+                        </li>
+                        <li><a href="#" title="Linkedin"><i class="icon-circled icon-64 icon-linkedin"></i></a></li>
+                        <li><a href="#" title="Pinterest"><i class="icon-circled icon-64 icon-pinterest"></i></a></li>
+                      </ul>
+
+                      <ul class="social-links">
+                        <li><a href="" title="Twitter"><i class="icon-circled icon-32 icon-twitter"></i></a></li>
+                        <li><a href="#" title="Facebook"><i class="icon-circled icon-32 icon-facebook"></i></a></li>
+                        <li><a href="#" title="Google plus"><i class="icon-circled icon-32 icon-google-plus"></i></a>
+                        </li>
+                        <li><a href="#" title="Linkedin"><i class="icon-circled icon-32 icon-linkedin"></i></a></li>
+                        <li><a href="#" title="Pinterest"><i class="icon-circled icon-32 icon-pinterest"></i></a></li>
+                      </ul>
+                    </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+      </footer>
+
+
+
+
+
+      <script>
+
+        /* Set the width of the side navigation to 250px */
+
+        function openNav() {
+          document.getElementById("mysidenav").style.width = "250px";
+
+        }
+        function closeNav() {
+          document.getElementById("mysidenav").style.width = "0px";
+        }
+
+
+
+
+      </script>
+
+      <script>
+
+        var prevScrollpos = window.pageYOffset;
+        window.onscroll = function () {
+          var currentScrollPos = window.pageYOffset;
+          if (prevScrollpos > currentScrollPos) {
+            document.getElementById("topnav").style.top = "0";
+          } else {
+            document.getElementById("topnav").style.top = "-50px";
+          }
+          prevScrollpos = currentScrollPos;
+        }
+
+      </script>
+
+      <script>
+
+        var count_index = 0;
+
+        var leagues = []
+        var leagues_url = []
+
+
+        {% for league in tables %}
+        leagues[count_index] = "{{league.leagues_table}}";
+        leagues_url[count_index] = "{{league.url}}";
+        count_index++;
+
+        {% endfor %}
+
+
+        function autocomplete(inp, arr, arr2) {
+          /*the autocomplete function takes two arguments,
+          the text field element and an array of possible autocompleted values:*/
+          var currentFocus;
+          /*execute a function when someone writes in the text field:*/
+          inp.addEventListener("input", function (e) {
+            var a, b, i, val = this.value;
+            /*close any already open lists of autocompleted values*/
+            closeAllLists();
+            if (!val) { return false; }
+            currentFocus = -1;
+            /*create a DIV element that will contain the items (values):*/
+            a = document.createElement("DIV");
+            a.setAttribute("id", this.id + "autocomplete-list");
+            a.setAttribute("class", "autocomplete-items");
+            /*append the DIV element as a child of the autocomplete container:*/
+            this.parentNode.appendChild(a);
+            /*for each item in the array...*/
+            for (i = 0; i < arr.length; i++) {
+              /*check if the item starts with the same letters as the text field value:*/
+
+              if (arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
+                /*create a DIV element for each matching element:*/
+                b = document.createElement("a");
+                b.setAttribute("class", "auto_link");
+
+
+                b.setAttribute("href", "{% url 'standings:standing'%}" + arr2[i] + "/");
+                /*make the matching letters bold:*/
+                /*insert a input field that will hold the current array item's value:*/
+
+                b.innerHTML += arr[i];
+                b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>";
+
+
+                /*execute a function when someone clicks on the item value (DIV element):*/
+                b.addEventListener("click", function (e) {
+                  /*insert the value for the autocomplete text field:*/
+                  inp.value = this.getElementsByTagName("input")[0].value;
+                  /*close the list of autocompleted values,
+                  (or any other open lists of autocompleted values:*/
+                  closeAllLists();
+                });
+                a.appendChild(b);
+              }
+            }
+          });
+          /*execute a function presses a key on the keyboard:*/
+          inp.addEventListener("keydown", function (e) {
+            var x = document.getElementById(this.id + "autocomplete-list");
+            if (x) x = x.getElementsByTagName("div");
+            if (e.keyCode == 40) {
+              /*If the arrow DOWN key is pressed,
+              increase the currentFocus variable:*/
+              currentFocus++;
+              /*and and make the current item more visible:*/
+              addActive(x);
+            } else if (e.keyCode == 38) { //up
+              /*If the arrow UP key is pressed,
+              decrease the currentFocus variable:*/
+              currentFocus--;
+              /*and and make the current item more visible:*/
+              addActive(x);
+            } else if (e.keyCode == 13) {
+              /*If the ENTER key is pressed, prevent the form from being submitted,*/
+              e.preventDefault();
+              if (currentFocus > -1) {
+                /*and simulate a click on the "active" item:*/
+                if (x) x[currentFocus].click();
+              }
+            }
+          });
+          function addActive(x) {
+            /*a function to classify an item as "active":*/
+            if (!x) return false;
+            /*start by removing the "active" class on all items:*/
+            removeActive(x);
+            if (currentFocus >= x.length) currentFocus = 0;
+            if (currentFocus < 0) currentFocus = (x.length - 1);
+            /*add class "autocomplete-active":*/
+            x[currentFocus].classList.add("autocomplete-active");
+          }
+          function removeActive(x) {
+            /*a function to remove the "active" class from all autocomplete items:*/
+            for (var i = 0; i < x.length; i++) {
+              x[i].classList.remove("autocomplete-active");
+            }
+          }
+          function closeAllLists(elmnt) {
+            /*close all autocomplete lists in the document,
+            except the one passed as an argument:*/
+            var x = document.getElementsByClassName("autocomplete-items");
+            for (var i = 0; i < x.length; i++) {
+              if (elmnt != x[i] && elmnt != inp) {
+                x[i].parentNode.removeChild(x[i]);
+              }
+            }
+          }
+          /*execute a function when someone clicks inn the document:*/
+          document.addEventListener("click", function (e) {
+            closeAllLists(e.target);
+          });
+        }
+
+      </script>
+
+      <script>
+        autocomplete(document.getElementById("myInput"), leagues, leagues_url);
+      </script>
+
+
+
+
+      <script src="{% static 'js/jquery.min.js' %}"></script>
+      <script src="{% static 'js/jquery.easing.js' %}"></script>
+      <script src="{% static 'js/bootstrap.js' %}"></script>
+      <script src=" {% static 'js/jquery.lettering.js' %}"></script>
+      <script src="{% static 'js/parallax/jquery.parallax-1.1.3.js' %}"></script>
+      <script src="{% static 'js/nagging-menu.js' %}"></script>
+      <script src="{% static 'js/sequence.jquery-min.js' %}"></script>
+      <script src="{% static 'js/sequencejs-options.sliding-horizontal-parallax.js' %}"></script>
+      <script src="{% static 'js/portfolio/jquery.quicksand.js'  %}"></script>
+      <script src=" {% static 'js/portfolio/setting.js' %}"></script>
+      <script src="{% static 'js/jquery.scrollTo.js' %}"></script>
+      <script src="{% static 'js/jquery.nav.js' %}"></script>
+      <script src=" {% static 'js/modernizr.custom.js' %}"></script>
+      <script src="{% static 'js/prettyPhoto/jquery.prettyPhoto.js' %}"></script>
+      <script src="{% static 'js/prettyPhoto/setting.js' %}"></script>
+      <script src="{% static 'js/jquery.flexslider.js' %}"></script>
+      <script src=" {% static 'contactform/contactform.js' %}"></script>
+      <script src="{% static 'js/custom.js' %}"></script>
+</body>
+
+</html>

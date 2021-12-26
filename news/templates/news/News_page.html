@@ -1,0 +1,123 @@
+
+{% extends 'home/base.html' %}	
+{%block content%} 
+<section id="featured" onclick="closeNav() ">
+ 
+        <div class="container">
+      <div class="row">
+        <div class="span12">
+          <div class="letter-container inner-heading">
+            <h2 class="fade" style="color: #1C3402;">
+            {{post.Title}}</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+      
+  </section>
+		 {% if post.match != None %}
+			<div class="scoreboard">
+    
+    <h4 style="text-align:center;">Scores</h4>
+    
+    <h4 style="text-align:center;">{{post.match.date}}</h4>
+  {% if post.match.home_score == None %}
+  <h4  id="ft">{{post.match.time}}</h4>
+
+ {% else %}
+  <h4  id="ft">FT</h4>
+{% endif %}
+    	 
+    <div style="text-align:center; overflow:auto">
+    	
+   
+  
+   
+    <h5 class="home clearit" >{{post.match.home}}</h5>
+    {% if post.match.home_score == None %}
+    
+    {% else %}
+    <h5 id="home_scores_no">{{post.match.home_score}}
+    </h5>
+    {% endif %}
+    <h5 class="away clearit" >{{post.match.away}}</h5>
+    <span style="font-size:350%;"></span>
+    <h5 class="icon-minus"></h5>
+    {% if post.match.away_score == None %}
+    {% else %}
+    <h5 id="away_scores_no">
+    	{{post.match.away_score}} 	
+    </h5>
+    {% endif %}
+    
+ 
+<hr style="margin-top:10%;" >
+	   <div style="width:50%; float:left;">
+	     	{% if home_goal_scorers != None %}
+	     	{% for home_goal_scorers in home_goal_scorers %}
+{% if home_goal_scorers != None %}
+<h5 class="home_scorers clear_left"  >{{home_goal_scorers}}</h5>
+            
+{% endif %}
+{% endfor %}
+{% endif %}
+	     </div>
+	     <div style="width:50%;float:right;">
+	     {% if away_goal_scorers != None %}
+	      {% for away_goal_scorers in away_goal_scorers %}
+{% if away_goal_scorers != None %}
+<h5 class="away_scorers clear_right" >{{away_goal_scorers}}</h5>
+            
+{% endif %}
+    
+                  {% endfor %}
+	     	{% endif %}
+	     		
+   </div>
+
+	
+	
+	
+	
+
+
+   
+   
+   
+    </div>
+   
+    	   
+
+  </div>
+  {% else %}
+  
+  {% endif %}
+		
+ <div class="container">
+  	
+  	<div class="row">
+  		
+  
+  		<div class="span8" onclick="closeNav()">
+  			<h4> {{post.Title}}  </h4>
+  			<h6> {{post.created_at}} </h6>
+  		{% if post.image %}
+  		<img class="news_images" src="{{post.image.url}}" alt="JustFootball Image" style="max-width:100℅; max-height:500px;"  >
+  		{% endif %}
+  			<div class="posts" >
+  		{{post.news  | safe | linebreaks }}
+  		</div>
+  				
+  			
+  		</div>
+  		
+  		<div class="span4">
+  			
+  			
+  		</div>
+  		
+  	</div>  
+  
+  
+  </div>
+   {% endblock %}

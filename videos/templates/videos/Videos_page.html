@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <title>JustFootball Videos</title>
+
+   </head>
+   <body>
+      {% extends 'home/base.html'%}
+     {%block content%}
+  
+   <section id="featured" >
+ 
+        <div class="container">
+      <div class="row">
+        <div class="span12">
+          <div class="letter-container inner-heading">
+            <h2 class="fade" >
+            Videos</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+      
+  </section>
+		
+
+    
+       <section>
+    	  <div  class="container">
+    	<h2 id="videos" >Videos</h2>
+    	<hr>
+    		
+    
+    		
+    		
+   
+    	<div class="row" >
+    	{%for Video in video%}
+    		<div class="span6">
+<h3 >    {{Video.video_name}} </h3>
+
+{{Video.embed_video_link | safe}}
+    
+    
+    	</div>
+    	{%endfor%}
+    	
+    	
+    	</div>
+ </div>
+    </section>
+    
+  
+   {% endblock %}
+     
+  
+     
+  
+   </body>
+</html>

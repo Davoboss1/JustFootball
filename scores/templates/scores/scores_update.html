@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="author" content="">
+   <style type="text/css" scoped>
+.scrollspy{
+    position: relative;
+    height: 200px;
+    margin-top: .5rem;
+    overflow: auto;
+    
+}
+</style>
+      <title>Scores Control Panel </title>
+      {% extends 'home/control_panel.html' %}
+
+   </head>
+   <body>
+   {% block content %}
+    {% if user.is_authenticated %}
+   True
+   {% else %}
+   {{error.Http_404}}
+   {% endif %}
+   
+   <hr style="background-color:white">
+   <a class="head" style="color:#9E73B4" href="{% url 'scores:add_scores_date' %}" > Click to add new dates </a>
+   	<div class="container">
+   	<form method="POST" >
+   	{% csrf_token %}
+   	
+   	<h5 class = "head" >
+   	
+   	{{form.date.label}}
+   	</h5>
+   	{{form.date}}
+   	
+   	<h5 class = "head" >
+   	
+   	{{form.time.label}}
+   	</h5>
+   	{{form.time}}
+   	<h5 class = "head" >
+   	
+   {{form.league.label}}
+   	</h5>
+   	
+   	{{form.league}}
+   	
+   	
+   	
+   		<h4 class="head">Select home team</h4>
+   		
+   			<div data-spy="scroll" data-offset="0" class="scrollspy">
+   	{% for league in table %}
+   	
+   		<select class="custom-select" name="League" style="width:100%;margin-bottom:5%;" onchange="gethomeValue(this.options[this.selectedIndex].id);" >
+    <option> {{league.leagues_table}}</option>
+ {% for leagues_name in league.standings_set.all %}
+
+<option id="{{leagues_name.id}}" value="{{leagues_name.id}}"> {{leagues_name.team}}</option>
+
+{% endfor %}
+
+
+   	
+</select>
+  {% endfor %}
+ </div>
+    
+
+
+<label class="head" >Enter The Home Team (Optional)</label>
+<input type="number" id="input_home_id" name="home_input_id" value="" readonly="" style="margin-left: 10%; width:10%;">
+		
+{{form.home}}
+        <div class="btn-group" role="group" aria-label="Basic example"  >
+      	<button type="button" class="btn btn-outline-light btn-color " id="home-0" onclick="gethomeScores(this.id)">0</button>
+	<button type="button" class="btn btn-outline-light btn-color " id="home-1" onclick="gethomeScores(this.id)">1</button>     
+	<button type="button" class="btn btn-outline-light btn-color " id="home-2" onclick="gethomeScores(this.id)">2</button>	
+		
+	<button type="button" class="btn btn-outline-light btn-color " id="home-3" onclick="gethomeScores(this.id)">3</button>			
+		<button type="button" class="btn btn-outline-light btn-color " id="home-4" onclick="gethomeScores(this.id)">4</button>			
+		<button type="button" class="btn btn-outline-light btn-color " id="home-5" onclick="gethomeScores(this.id)">5</button>	
+		<button type="button" class="btn btn-outline-light btn-color " id="home-6" onclick="gethomeScores(this.id)">6</button>					
+										
+			<button type="button" class="btn btn-outline-light btn-color " id="home-7" onclick="gethomeScores(this.id)">7</button>												
+																			<button type="button" class="btn btn-outline-light btn-color " id="home-8" onclick="gethomeScores(this.id)">8</button>
+																			<button type="button" class="btn btn-outline-light btn-color " id="home-9" onclick="gethomeScores(this.id)">9</button>				
+																						
+</div>
+
+
+
+<div class="row top_margin">
+	<div class="col-lg-12 col-md-12 col-sm-12">
+	
+<label class="head" >Enter The Home score  (Or leave empty for fixtures)</label>
+	{{form.home_score}}
+		
+	</div>
+	</div>
+
+
+<hr style="background-color:#FF5656; height:5px;">
+
+	<h4 class="head">Select away teams</h4>
+	<div data-spy="scroll" data-offset="0" class="scrollspy">
+  {% for league in table %}
+   	
+   		<select class="custom-select" name="Leagues" style="width:100%;margin-bottom:5%;" onchange="getawayValue(this.options[this.selectedIndex].id);" >
+    <option> {{league.leagues_table}}</option>
+ {% for leagues_name in league.standings_set.all %}
+
+<option id="{{leagues_name.id}}" value="{{leagues_name.id}}"  > {{leagues_name.team}}</option>
+
+{% endfor %}
+
+
+   	
+</select>
+  {% endfor %}
+</div>
+	
+ 
+<label class="head" >Enter The Away Team (Optional) </label>
+<input type="number" id="input_away_id" name="away_input_id" value="" readonly="" style="margin-left: 10%; width:10%;">
+		
+{{form.away}}
+
+     <div class="btn-group" role="group" aria-label="Basic example">
+     		<button type="button" class="btn btn-outline-light btn-color" onclick="getawayScores(this.id)" id="away-0">0</button>
+     	<button type="button" class="btn btn-outline-light btn-color" onclick="getawayScores(this.id)" id="away-1">1</button>
+  <button type="button" class="btn btn-outline-light btn-color" id="away-2" onclick="getawayScores(this.id)">2</button>
+  <button type="button" class="btn btn-outline-light btn-color " id="away-3" onclick="getawayScores(this.id)">3</button>
+	<button type="button" class="btn btn-outline-light btn-color" onclick="getawayScores(this.id)" id="away-4">4</button>
+		<button type="button" class="btn btn-outline-light btn-color" onclick="getawayScores(this.id)" id="away-5">5</button>
+	<button type="button" class="btn btn-outline-light btn-color" onclick="getawayScores(this.id)" id="away-6">6</button>
+	
+		<button type="button" class="btn btn-outline-light btn-color" onclick="getawayScores(this.id)" id="away-7">7</button>
+		<button type="button" class="btn btn-outline-light btn-color" onclick="getawayScores(this.id)" id="away-8">8</button>
+	
+		<button type="button" class="btn btn-outline-light btn-color" onclick="getawayScores(this.id)" id="away-9">9</button>
+	
+
+</div>
+<div class="row top_margin">
+	<div class="col-lg-12 col-md-12 col-sm-12">
+	<label class="head" >Enter The Away score  (Or leave empty for fixtures)</label>
+		{{form.away_score}}
+	</div>
+	
+</div>
+
+
+
+
+<div class="jumbotron" style="display:flex; margin-top:10%;">
+	<h6 id="scores_home" class="scores_display" >
+		
+	</h6>
+	<h6 id="scores_home_no" class="scores_display ">
+		
+	</h6>
+	<h6 class="scores_display" >
+	-
+	</h6>
+
+	<h6 id="scores_away_no" class="scores_display" >
+	</h6>
+	
+	<h6 id="scores_away" class="scores_display ">
+	
+		
+	</h6>
+	
+	
+</div>
+<div >
+	<div class="row">
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-13">
+			<input type="submit" class="btn btn-success btn-lg" style="width:100%;" data-toggle="modal"  >
+			
+
+
+
+		</div>
+		
+	</div>
+	
+	
+</div>
+      </div>
+
+</form>
+
+ <script>
+ 
+
+  	function gethomeScores(id){
+  		var scores = document.getElementById(id).innerHTML;
+		
+		
+		var home_scores = document.getElementById(	"home_input_scores").value = scores;
+		document.getElementById("scores_home_no").innerHTML = home_scores;
+		
+ 	}
+ 	
+ 	function getawayScores(id){
+ 			var scores = document.getElementById(id).innerHTML;
+ 		
+		var away_scores = document.getElementById("away_input_scores").value = scores;
+		
+		document.getElementById("scores_away_no").innerHTML = away_scores;
+
+		
+ 	}
+
+function gethomeValue(id){
+
+var home_team =	document.getElementById(id).innerHTML;
+
+
+var home = document.getElementById("input_home").value = home_team;
+ 
+document.getElementById("scores_home").innerHTML = home_team;
+
+var home_team_id =	document.getElementById(id).value;
+
+ document.getElementById("input_home_id").value = home_team_id;
+
+
+}
+
+function getawayValue(id){
+	var away_team = document.getElementById(id).innerHTML;
+	var away = document.getElementById("input_away").value = away_team;
+	
+	
+	document.getElementById("scores_away").innerHTML = away;
+	
+	var away_team_id =	document.getElementById(id).value;
+
+ document.getElementById("input_away_id").value = away_team_id;
+
+}
+
+  </script>
+  
+ {% endblock %}
+
+   </body>
+</html>

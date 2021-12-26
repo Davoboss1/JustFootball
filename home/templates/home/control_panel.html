@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+   	
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="author" content="">
+   	
+      <title>JustFootball Control Panel</title>
+      {% load static %}
+      <link rel="stylesheet" href="{% static 'bootstrap_css/bootstrap.min.css' %}" >
+      	<link rel="stylesheet" href="{% static 'bootstrap_css/jcp_style.css' %}">
+      	
+      		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+      			
+<link href="https://fonts.googleapis.com/css?family=Lobster|Raleway:400i" rel="stylesheet">
+	<style>
+	input,textarea,select{
+		max-width:350px;
+		min-width:50px;
+	}
+	
+	h5{
+	max-width:350px;
+	min-width:50px;
+	margin-top:5%;
+	background:black;
+	color:white;
+	border-radius:5px;
+	text-align:center;
+	}
+	</style>
+   </head>
+   <body>
+   	<h2 class="head">
+   	<a href="{% url 'Homepage' %}" >
+   		Home
+   		</a>
+   	</h2>
+   	<a class="head" href="{% url 'control_panel' %}" >
+   		Control panel home
+   		</a>
+   	{% block content %}
+   
+   	<h2 class="head">
+   		Welcome to JustFootball Control Panel
+   		
+   	</h2>
+   	
+   <ul class="list-group">
+    <li class="list-group-item"> <a href="../justfootball_administration/home/slider/">Add Slider
+  </a> 
+  </li>
+  <li class="list-group-item"> <a href="{% url 'news:post_news' %}">Post News
+  </a>
+  </li>
+  <li class="list-group-item"> <a href="{% url 'news:news_update' %}">Update News
+  </a>
+  </li>
+  <li class="list-group-item"> <a href="{% url 'news:news_delete' %}">Delete News
+  </a>
+  </li>
+ <li class="list-group-item"> <a href="{% url 'scores:add_scores_date' %}"> Add Scores or Fixtures
+  </a>
+  </li>
+   <li class="list-group-item"> <a href="{% url 'scores:update_scores_url' %}"> Update Scores or Fixtures
+  </a>
+  </li>
+     <li class="list-group-item"> <a href="{% url 'scores:delete_scores_url' %}"> Delete Scores or Fixtures
+  </a>
+  </li>
+   
+  
+   <li class="list-group-item"> <a href="../justfootball_administration/standings/"> Standings
+  </a>
+  </li>
+   <li class="list-group-item"> <a href="../justfootball_administration/transfers/"> Transfers
+  </a>
+  </li>
+   <li class="list-group-item"> <a href="../justfootball_administration/videos/"> Videos
+  </a>
+  </li>
+  
+</ul>
+
+<a href="{% url 'logout' %}" class="btn btn-warning m-3">
+Logout
+</a>
+{% endblock %}
+
+   <script>
+    	function addImage(){
+    		
+    		
+    		var newstext = document.getElementById("newstext");
+    		newstext.value =  newstext.value + '    <img src=" " alt="">       ' ;
+    	}
+    	
+    	(function(){
+    	
+    	var inputs = document.getElementsByTagName("input");
+    	var selects = document.getElementsByTagName("select");
+    	var text_areas = document.getElementsByTagName("textarea");
+    	
+    	
+    	for(var i = 0; i < inputs.length; i++){
+    		inputs[i].className += " form-control";
+    	}
+    	for(var i = 0; i < selects.length; i++){
+    		selects[i].className += " form-control";
+    	}
+    	for(var i = 0; i < text_areas.length; i++){
+    		text_areas[i].className += " form-control";
+    	}
+    	})();
+    	
+    </script>
+<script src="{% static 'bootstrap_js/jquery-3.3.1.slim.min.js' %}">
+</script>
+<script src="{% static 'bootstrap_js/popper.min.js' %}">
+</script>
+<script src="{% static 'bootstrap_js/bootstrap.min.js' %}">
+
+</script>
+
+
+
+   </body>
+</html>

@@ -1,0 +1,35 @@
+{% extends 'home/control_panel.html' %}
+
+{% block content %}
+ {% if user.is_authenticated %}
+   True
+   {% else %}
+   {{error.Http_404}}
+   {% endif %}
+<div class="container">
+<div class="row">
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+<h1 class="head" >
+Select news to delete
+</h1>
+<form method="POST" >
+
+{% csrf_token %}
+<select onChange="window.document.location.href=this.options[this.selectedIndex].value;"><option selected="" value="">
+Select News
+</option>
+              	{% for posts in post %}
+              	<option value="{% url 'news:delete_news' posts.id posts.url%}"> {{posts.Title}}
+              	</option>
+              	{%endfor%}
+              </select>
+	<div class="row">
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-13">
+			
+			
+		</div>
+		
+	</div>
+</div>
+</div>
+{% endblock %}

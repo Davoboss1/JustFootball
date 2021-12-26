@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <title>Scores</title>
+
+   </head>
+   <body>
+      {% extends 'home/base.html'%}
+     {%block content%}
+  
+   <section id="featured" >
+ 
+        <div class="container">
+      <div class="row">
+        <div class="span12">
+          <div class="letter-container inner-heading">
+            <h2 class="fade" >
+            Transfers</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+      
+  </section>
+  
+  
+		{%for League in league %}
+<section >
+	<!-- Scores -->
+	  <h3 style="margin-left:5%;">{{League.name_of_league}} </h3>
+	
+	
+	<table class="table">
+  <thead>
+    <tr>
+    <th>Date</th>
+    <th>Player Name</th>
+      <th>From  <span class="icon-arrow-right"></span> </th>
+      
+      <th>To </th>
+      
+    </tr>
+  </thead>
+  <tbody>
+	{% for Transfer in pages %}
+ 
+  {% if Transfer.league.name_of_league == League.name_of_league %}
+        
+  	 
+    <tr>
+   
+      <td scope="row">
+      	<strong>
+      	{{Transfer.date}}
+      	</strong></td>
+      	
+      	<td>
+      	<strong>
+      	{{Transfer.Player_name}}
+      	</strong></td>
+      <td>
+      	<strong>
+    {{Transfer.From}}
+      	</strong>
+      </td>
+      <td>
+      	<strong>
+      	{{Transfer.To}}
+      	</strong>
+      	</td>
+    </tr>
+    
+  {% endif %}
+   
+  
+  {%endfor%}
+  
+  
+  </tbody>
+  
+</table>
+
+
+
+  
+
+
+
+  </section>
+  {%endfor%}
+   <!--Pages Buttons-->
+  			<div class="btn-toolbar" role = "toolbar"  
+  			aria-label="Websites pages" >
+  				<div class="btn-group" role="group" >
+  				
+  					{% if pages.has_next %}
+  					<a href="?page={{pages.next_page_number}}" style = "margin-left:5%;">	
+  			<button id="pages" class=" btn btn-link btn-sm">
+  						Next Page
+  					</button>		
+  					</a>
+  					{%endif%}
+  					{% if pages.has_previous %}
+  						<a href="?page={{pages.previous_page_number}}" style="margin-left:5%;" >	
+  	<button id="pages" class=" btn btn-link btn-sm">
+  						Previous Page
+  						
+  					</button>	
+  				</a>	
+  				{%endif%}
+  							
+  	
+  			
+  				</div>
+  				
+  			</div>
+  			
+ 
+  				
+
+
+
+   {% endblock %}
+     
+  
+     
+  
+   </body>
+</html>
